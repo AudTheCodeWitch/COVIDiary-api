@@ -1,7 +1,11 @@
 class Api::EntriesController < ApplicationController
   before_action :set_user
   def index
-    entries = @user.entries
+    if @user
+      entries = @user.entries
+    else
+      entries = Entry.all
+    end
     options = {
         include: [:user]
     }
@@ -42,7 +46,9 @@ class Api::EntriesController < ApplicationController
 
   private
   def set_user
-    @user = User.find(params[:user_id])
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+    end
   end
 
   def entry_params
