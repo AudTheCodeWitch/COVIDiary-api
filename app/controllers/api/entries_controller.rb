@@ -19,6 +19,16 @@ class Api::EntriesController < ApplicationController
     render json: @entry
   end
 
+  def update
+    @entry = Entry.find(params[:id])
+    if @entry.update(entry_params)
+      render json: @entry
+    else
+      render json: { error: "Error updating entry" }
+    end
+
+  end
+
   def destroy
     @entry = Entry.find(params[:id])
     @entry.destroy
