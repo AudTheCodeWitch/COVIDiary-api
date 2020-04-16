@@ -1,5 +1,5 @@
 class Api::EntriesController < ApplicationController
-  before_action :set_account
+  before_action :set_user
   def index
     @entries = @user.entries
     render json: @entries
