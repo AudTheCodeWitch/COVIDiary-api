@@ -1,28 +1,34 @@
 class Api::EntriesController < ApplicationController
   before_action :set_user
   def index
-    @entries = @user.entries
-    render json: @entries
+    entries = @user.entries
+    options = {
+        include: [:user]
+    }
+    render json: EntrySerializer.new(entries, options)
   end
 
   def create
-    @entry = @user.entries.build(entry_params)
-    if @entry.save
-      render json: @entry
+    entry = @user.entries.build(entry_params)
+    if entry.save
+      render json: EntrySerializer.new(entry)
     else
       render json: { error: "Error creating entry" }
     end
   end
 
   def show
-    @entry = Entry.find(params[:id])
-    render json: @entry
+    entry = Entry.find(params[:id])
+    options = {
+        include: [:user]
+    }
+    render json: EntrySerializer.new(entry, options)
   end
 
   def update
-    @entry = Entry.find(params[:id])
-    if @entry.update(entry_params)
-      render json: @entry
+    entry = Entry.find(params[:id])
+    if entry.update(entry_params)
+      render json: EntrySerializer.new(entry)
     else
       render json: { error: "Error updating entry" }
     end
@@ -30,8 +36,8 @@ class Api::EntriesController < ApplicationController
   end
 
   def destroy
-    @entry = Entry.find(params[:id])
-    @entry.destroy
+    entry = Entry.find(params[:id])
+    entry.destroy
   end
 
   private
