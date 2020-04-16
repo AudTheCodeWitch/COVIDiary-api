@@ -1,2 +1,2 @@
-class EntriesController < ApplicationController
+class Api::EntriesController < ApplicationController
 end
