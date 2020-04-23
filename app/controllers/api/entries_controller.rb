@@ -1,11 +1,9 @@
 class Api::EntriesController < ApplicationController
   before_action :set_user
   def index
-    if @user
-      entries = @user.entries
-    else
-      entries = Entry.all
-    end
+    # if there is a user in the params, only show their entries. Otherwise, only show the public entries
+    # TODO: fix user entries so they only show private ones if it is the current user
+    entries = @user ? @user.entries : Entry.public
     options = {
         include: [:user]
     }
