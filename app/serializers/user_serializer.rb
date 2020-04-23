@@ -6,7 +6,7 @@ class UserSerializer
              :email,
              :birth_date,
              :occupation,
-             :essential?,
+             :is_essential,
              :isolation_start,
              :isolation_end,
              :about
