@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_04_23_205635) do
   create_table "entries", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "health_rating"
-    t.boolean "symptoms_present?"
+    t.boolean "is_symptomatic"
     t.text "health_comments"
     t.integer "mental_health_rating"
     t.text "mental_health_comments"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2020_04_23_205635) do
     t.string "last_name"
     t.datetime "birth_date"
     t.string "occupation"
-    t.boolean "essential?"
+    t.boolean "is_essential"
     t.datetime "isolation_start"
     t.datetime "isolation_end"
     t.text "about"
