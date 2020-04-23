@@ -16,7 +16,7 @@ require 'faker'
       last_name: Faker::Name.unique.last_name,
       birth_date: Faker::Date.between(from: 100.years.ago, to: Date.today),
       occupation: Faker::Job.title,
-      essential?: Faker::Boolean.boolean,
+      is_essential: Faker::Boolean.boolean,
       isolation_start: Faker::Date.between(from: 3.months.ago, to: Date.today),
       about: Faker::Lorem.paragraphs(number: 2))
 
@@ -24,7 +24,8 @@ require 'faker'
   3.times do
     Entry.create(
         health_rating: Faker::Number.between(from: 1, to: 5),
-        symptoms_present?: Faker::Boolean.boolean,
+        is_symptomatic: Faker::Boolean.boolean,
+        is_public: Faker::Boolean.boolean,
         health_comments: Faker::Lorem.paragraphs(number: 1),
         mental_health_rating: Faker::Number.between(from: 1, to: 5),
         mental_health_comments: Faker::Lorem.paragraphs(number: 1),
